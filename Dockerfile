@@ -16,6 +16,8 @@ RUN wget https://github.com/rigelminer/rigel/releases/download/$VER/rigel-$VER-l
     rm rigel-$VER-linux.tar.gz && \
     mv rigel-$VER-linux rigel-miner
 
+RUN ln -s libnvidia-ml.so.1 /lib/x86_64-linux-gnu/libnvidia-ml.so
+
 WORKDIR rigel-miner
 
 COPY startup.sh /rigel-miner
