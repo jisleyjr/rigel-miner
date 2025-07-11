@@ -11,7 +11,10 @@ RUN apt-get update -y && \
         apt-transport-https && \
         apt clean
 
-RUN mkdir /rigel-miner
+RUN wget https://github.com/rigelminer/rigel/releases/download/$VER/rigel-$VER-linux.tar.gz && \
+    tar -xzf rigel-$VER-linux.tar.gz && \
+    rm rigel-$VER-linux.tar.gz && \
+    mv rigel-$VER-linux rigel-miner
 
 WORKDIR rigel-miner
 
