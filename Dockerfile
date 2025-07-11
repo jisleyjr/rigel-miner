@@ -1,0 +1,23 @@
+FROM ubuntu:24.04 AS base
+
+ARG VER=1.22.2
+RUN apt-get update -y && \
+    apt-get install -yqq \
+        ca-certificates \
+        wget \
+        curl \
+        telnet \
+        gpg \
+        apt-transport-https && \
+        apt clean
+
+RUN mkdir /rigel-miner
+
+WORKDIR rigel-miner
+
+COPY startup.sh /rigel-miner
+
+RUN chmod +x startup.sh
+
+# Add in start.up to read env variables
+CMD ["./startup.sh"]
